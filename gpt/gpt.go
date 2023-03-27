@@ -23,7 +23,7 @@ type ChatGPTResponseBody struct {
 	Object  string                   `json:"object"`
 	Created int                      `json:"created"`
 	Model   string                   `json:"model"`
-	Choices []map[string]interface{} `json:"choices"`
+	Choices []map[string]ChatGPTChatFormat `json:"choices"`
 	Usage   map[string]interface{}   `json:"usage"`
 }
 
@@ -111,8 +111,7 @@ func Completions(msg string) (string, error) {
 	var reply string
 	if len(gptResponseBody.Choices) > 0 {
 		for _, v := range gptResponseBody.Choices {
-			reply_message := v["message"]
-			reply = reply_message.(ChatGPTChatFormat).Content
+			reply = v["message"].Content
 			break
 		}
 	}
