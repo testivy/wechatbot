@@ -23,7 +23,7 @@ type ChatGPTResponseBody struct {
 	Object  string                   `json:"object"`
 	Created int                      `json:"created"`
 	Model   string                   `json:"model"`
-	Choices []map[string]ChatGPTChatFormat `json:"choices"`
+	Choices []map[string]*ChatGPTChatFormat `json:"choices"`
 	Usage   map[string]interface{}   `json:"usage"`
 }
 
