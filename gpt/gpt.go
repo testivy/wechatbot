@@ -111,7 +111,8 @@ func Completions(msg string) (string, error) {
 	var reply string
 	if len(gptResponseBody.Choices) > 0 {
 		for _, v := range gptResponseBody.Choices {
-			reply = v["message"].(ChatGPTChatFormat).Content
+			reply_message := v["message"]
+			reply = reply_message.(ChatGPTChatFormat).Content
 			break
 		}
 	}
