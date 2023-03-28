@@ -1,0 +1,7 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "shutdownAction":"none",
+  "forwardPorts":"0.0.0.0:80",
+  "features": {
+  }
+}
