@@ -7,6 +7,12 @@ import (
 	"wechatbot/utils"
 )
 
+type model string
+const (
+  model_img  model = "img"
+  model_gpt  model = "gpt-turbo"
+)
+
 func HandleRequestText(requestText string) (string, error) {
 	var reply string
 	var err error
@@ -15,8 +21,8 @@ func HandleRequestText(requestText string) (string, error) {
 		if err != nil {
 			return "", err
 		}
-	} else if strings.Count(requestText, "memo") > 0 { // 获取纪念日信息
-		reply, err = utils.GetMemoDataInfo()
+	} else if strings.Count(requestText, "img") > 0 { // 获取文字生成图片功能
+		reply, err = gpt.Generations(strings.ReplaceAll(requestText,"img",""))
 		if err != nil {
 			return "", err
 		}
