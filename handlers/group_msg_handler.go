@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"log"
 	"strings"
 
@@ -42,7 +43,8 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	}
 
 	// 替换掉@文本
-	replaceText := "@" + sender.NickName
+	replaceText := "@" + sender.Self().NickName
+	fmt.Println(replaceText)
 	requestText := strings.TrimSpace(strings.ReplaceAll(msg.Content, replaceText, ""))
 
 	// 获取@我的用户

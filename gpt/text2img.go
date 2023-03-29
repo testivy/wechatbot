@@ -9,8 +9,6 @@ import (
 	"wechatbot/config"
 )
 
-const BASEImgURL = "https://api.openai.com/v1/images/"
-
 type ChatImgResponseBody struct {
 	Created uint64              `json:"created"`
 	Data    []map[string]string `json:"data"`
@@ -35,7 +33,7 @@ func Generations(msg string) (string, error) {
 		return "", err
 	}
 	log.Printf("request gpt json string : %v", string(requestData))
-	req, err := http.NewRequest("POST", BASEImgURL+"generations", bytes.NewBuffer(requestData))
+	req, err := http.NewRequest("POST", (config.Config.EndPoint+"/v1/generations"), bytes.NewBuffer(requestData))
 	if err != nil {
 		return "http.NewRequest ", err
 	}

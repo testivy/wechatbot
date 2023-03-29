@@ -13,8 +13,6 @@ import (
 	"golang.org/x/text/encoding/simplifiedchinese"
 )
 
-const BASEURL = "https://api.openai.com/v1/chat/"
-
 // const BASEURL = "https://api.openai.com/v1/"
 
 // ChatGPTResponseBody 响应体
@@ -82,7 +80,7 @@ func Completions(msg string) (string, error) {
 		return "", err
 	}
 	log.Printf("request gpt json string : %v", string(requestData))
-	req, err := http.NewRequest("POST", BASEURL+"completions", bytes.NewBuffer(requestData))
+	req, err := http.NewRequest("POST", (config.Config.EndPoint+"/v1/chat/completions"), bytes.NewBuffer(requestData))
 	if err != nil {
 		return "http.NewRequest ", err
 	}

@@ -23,9 +23,11 @@ type Configuration struct {
 	GptChat bool `json:"gpt_chat"`
 	// 额外信息
 	Extra ExtraSt `json:"extra"`
+	//请求API地址
+	EndPoint string `json:"endpoint"`
 }
 
-var Config *Configuration
+var Config *Configuration =&Configuration{}
 
 // LoadConfig 加载配置
 func LoadConfig(cfg string) {
